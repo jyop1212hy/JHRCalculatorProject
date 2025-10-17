@@ -68,7 +68,8 @@ public class Calculator {
                 if (exit2.equals("exit")){
                     System.out.println("프로그램을 종료 합니다.");
                     break;
-                } System.out.println("오케이 렛츠기릿!");
+                }
+                System.out.println("오케이 렛츠기릿!");
             }
         }
     }
