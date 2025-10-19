@@ -1,41 +1,31 @@
 package lvtwocalculator;
 
-import javax.xml.transform.Result;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
     //13. 연산 결과는 Calculator 클래스의 연산 결과를 저장하는 필드에 저장
+    //13-1 컬렉션 필드에 직접 접근하지 못하도록 수정 (캡슐화)
     private final List<String> resultHistory = new ArrayList<>();
 
     // 17. 게터를 통해 Mian클래스에서 데이터 볼수있게 함
-    private List<String> getresultHistory() {
+    public List<String> getresultHistory() {
         return resultHistory;
     }
+
     // 17-1. 세터
-    private List<String> setresultHistory() {
+    public List<String> setresultHistory() {
         return resultHistory;
         //return Collections.unmodifiableList(resultHistory);
     }
 
-    // 21. resultHistory 값 제거기능
-    public String resultDelete() {
-        if (equals("기록삭제")) {
-            resultHistory.remove("기록삭제");
-            return "";
-        }
-    }
-
-    public boolean removeLast() {
-        if (!resultHistory.isEmpty()) {
-            resultHistory.remove(resultHistory.size() - 1);
-            return true;
-        }
-        return false;
-    }
-
-
-
+//    public boolean removeLast() {
+//        if (!resultHistory.isEmpty()) {
+//            resultHistory.remove(resultHistory.size() - 1);
+//            return true;
+//        }
+//        return false;
+//    }
 
 
 

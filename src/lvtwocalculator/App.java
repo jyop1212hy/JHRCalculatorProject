@@ -1,5 +1,6 @@
 package lvtwocalculator;
 
+    import java.util.List;
     import java.util.Scanner;
 
     public class App {
@@ -50,6 +51,7 @@ package lvtwocalculator;
 
                 // 19. 입력 받은 데이터를 매게변수를 통해 clculator 연산메서드로 인자값 전달
                 int result = calclator.clculator(operation1, num1, num2);
+                System.out.println("결과: " + result);
 
                 // 요청사항: “나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.“
                 // 5. 나눗셈 이기에 두번째 입력 정수는 0을 입력 할수 없게 한다.
@@ -58,9 +60,21 @@ package lvtwocalculator;
 //                    System.out.println("나눗셈 연산에서 분모(두번째 정수)애 0이 입력될 수 없습니다.");
 //                    continue;
 //                }
-                // 20.
-                System.out.println("결과: " + result);
-                System.out.println("계산이 저장되었습니다.");
+
+
+                // 20. 게터를 통해 resultHistory 저장된 값 불러오기
+                List<String> result2 = calclator.getresultHistory();
+                System.out.println(result2);
+                System.out.println("연산을 수정하시려면 숫자1을 입력하세요.");
+                int resultRevise= calculatorInPut.nextInt();
+
+                // 21. 세터로 값 수정 가능
+                if (1 == resultRevise) {
+                    calclator.setresultHistory();
+                    System.out.println(result2);
+
+                }
+
                 System.out.println("원하지 않으시면 '기록삭제' 를 입력해 주세요.");
                 String resultDelete = calculatorInPut.nextLine();
 
