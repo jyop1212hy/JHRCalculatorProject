@@ -41,42 +41,38 @@ package lvtwocalculator;
                 // 2. 첫번째 숫자 입력
                 System.out.print("첫번째 숫자를 입력하세요: ");
                 int num1 = calculatorInPut.nextInt();
-                // 2-1. 실수 입력 방지하기
-
-
 
                 // 3. 두번째 숫자 입력
                 System.out.print("두번째 숫자를 입력하세요: ");
                 int num2 = calculatorInPut.nextInt();
 
                 // 19. 입력 받은 데이터를 매게변수를 통해 clculator 연산메서드로 인자값 전달
-                int result = calclator.clculator(operation1, num1, num2);
-                System.out.println("결과: " + result);
-
-                // 요청사항: “나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.“
-                // 5. 나눗셈 이기에 두번째 입력 정수는 0을 입력 할수 없게 한다.
-                // 14. 나눗셈에 0입력 if문 클래스 연산 메서드로 병합
-//                if (operation == '/' && num2 == 0) {
-//                    System.out.println("나눗셈 연산에서 분모(두번째 정수)애 0이 입력될 수 없습니다.");
-//                    continue;
-//                }
+                int result = calclator.calculate(operation1, num1, num2);
 
 
-                // 20. 게터를 통해 resultHistory 저장된 값 불러오기
-                List<String> result2 = calclator.getresultHistory();
-                System.out.println(result2);
-                System.out.println("연산을 수정하시려면 숫자1을 입력하세요.");
-                int resultRevise= calculatorInPut.nextInt();
+                // 20. 간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현합니다. (Getter 메서드)
+                List<String> viewStorageData = calclator.getResultHistory();
+                System.out.println("결과: " + viewStorageData);
 
-                // 21. 세터로 값 수정 가능
-                if (1 == resultRevise) {
-                    calclator.setresultHistory();
-                    System.out.println(result2);
+                // 21. 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
+                List<String> resultHistory = calclator.getResultHistory();
+                System.out.println(" ");
+                System.out.println("계산 기록");
 
+                for (int i = 0; i < resultHistory.size(); i++) {
+                    System.out.println(i + ". " + resultHistory);
                 }
 
-                System.out.println("원하지 않으시면 '기록삭제' 를 입력해 주세요.");
-                String resultDelete = calculatorInPut.nextLine();
+                System.out.print("수정 하실 번호를 입력해주세요: ");
+                int indexNumber = calculatorInPut.nextInt();
+
+                System.out.println("양식에 맞춰 수정하세요 (예: 2 + 2 = 4): ");
+                String changedData = calculatorInPut.nextLine();
+                calclator.setResultHistoryChangedData(indexNumber - 1, changedData);
+
+
+//                System.out.println("원하지 않으시면 '기록삭제' 를 입력해 주세요.");
+//                String resultDelete = calculatorInPut.nextLine();
 
                 // 8. 반복의 종료를 알려주는 “exit” 문자열을 입력하기
                 System.out.println("다음 연산을 위해 Enter을 눌러주세요. (exit 입력 시 종료)");
