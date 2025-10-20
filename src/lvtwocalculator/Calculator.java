@@ -9,8 +9,8 @@ public class Calculator {
     //속
     //13. 연산 결과는 Calculator 클래스의 연산 결과를 저장하는 필드에 저장
     //13-1 컬렉션 필드에 직접 접근하지 못하도록 수정 (캡슐화)
-    // resultHistory 연산된 결과값을 컬렉션 형태로 저장하는 속성
     private List<String> resultHistory = new ArrayList<>();
+    public int result;
     //생
 
     //기
@@ -42,6 +42,9 @@ public class Calculator {
                     break;
                 }
         }
+        this.result = result;
+        //결과값 반환
+
 
         // 16.결과값 기록 저장(저장이 정상 작동 되었는지 출력문 띄우기)
         String save = num1 + " " + operation1 + " " + num2 + " = " + result;
@@ -55,18 +58,30 @@ public class Calculator {
         return Collections.unmodifiableList(resultHistory);
     }
 
-    // 17-1. 세터
+    // 17-1. 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
     public void setResultHistoryChangedData(int indexNumber, String changedData) {
-        if (indexNumber <= 0 || indexNumber >= resultHistory.size()) {
+        if (indexNumber < 0 || indexNumber >= resultHistory.size()) {
+            System.out.println("해당번호는 없는 번호입니다.");
             return;
         }
         resultHistory.set(indexNumber, changedData);
-        System.out.println((indexNumber-1) + "번 기록이 수정되었습니다!");
+        System.out.println((indexNumber) + "번 기록이 수정되었습니다!");
+        return;
     }
-        //return Collections.unmodifiableList(resultHistory);
+
+    // 17-1. 삭제
+    public void resultHistoryRemoveDate(int indexNumber) {
+        if (indexNumber == 0) {
+            resultHistory.remove(indexNumber);
+            System.out.println("가장 오래된 기록이 삭제되었습니다!");
+        } else {
+            System.out.println("삭제할 기록이 없습니다.");
+            return;
+        }
+    }
 
 
-        //    public boolean removeLast() {
+    //    public boolean removeLast() {
 //        if (!resultHistory.isEmpty()) {
 //            resultHistory.remove(resultHistory.size() - 1);
 //            return true;

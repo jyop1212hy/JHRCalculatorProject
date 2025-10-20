@@ -18,7 +18,7 @@ package lvtwocalculator;
 
 
             // 10. Calculator 인스턴스(객체) 생성
-            Calculator calclator= new Calculator();
+            Calculator calculator = new Calculator();
 
             //Scanner를 사용하여 양의 정수 2개(0 포함)와 사칙연산을 입력 받기
             // 11. calculatorInPut 변수를 Calculator 연산기능 메서드 매게변수 인자로 값을 넘기기
@@ -27,14 +27,13 @@ package lvtwocalculator;
             // 7반복문 으로 무산 반복
             while (true) {
                 // 1. 사칙연산 기로 입력 받기
-                System.out.print("원하는 계산(+,-,*,/) 기호를 입력하세요: ");
-                String operation = calculatorInPut.next();
+                System.out.print("\n원하는 계산(+,-,*,/) 기호를 입력하세요: ");
+                String operation = calculatorInPut.nextLine();
 
                 // 6. if문으로 사칙연산을 잘못 입력시 안내멘트 출력하고 재입력 받기
                 char operation1 = operation.charAt(0);
                 if (operation1 != '+' && operation1 != '-' && operation1 != '*' && operation1 != '/') {
                     System.out.print("계산기호를 다시 입력하세요.");
-                    System.out.println("");
                     continue;
                 }
 
@@ -47,42 +46,62 @@ package lvtwocalculator;
                 int num2 = calculatorInPut.nextInt();
 
                 // 19. 입력 받은 데이터를 매게변수를 통해 clculator 연산메서드로 인자값 전달
-                int result = calclator.calculate(operation1, num1, num2);
+                calculator.calculate(operation1, num1, num2);
 
 
                 // 20. 간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현합니다. (Getter 메서드)
-                List<String> viewStorageData = calclator.getResultHistory();
-                System.out.println("결과: " + viewStorageData);
+                int result = calculator.result;
+                System.out.println("결과: " + result);
 
-                // 21. 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
-                List<String> resultHistory = calclator.getResultHistory();
-                System.out.println(" ");
-                System.out.println("계산 기록");
+
+                List<String> resultHistory = calculator.getResultHistory();
+                System.out.println("\n계산 기록");
 
                 for (int i = 0; i < resultHistory.size(); i++) {
-                    System.out.println(i + ". " + resultHistory);
+                    System.out.println(i + ". " + resultHistory.get(i));// ← 개별 항목 출력
                 }
 
-                System.out.print("수정 하실 번호를 입력해주세요: ");
-                int indexNumber = calculatorInPut.nextInt();
 
-                System.out.println("양식에 맞춰 수정하세요 (예: 2 + 2 = 4): ");
-                String changedData = calculatorInPut.nextLine();
-                calclator.setResultHistoryChangedData(indexNumber - 1, changedData);
+                System.out.print("\n계산기 추가 기능 (원하는 기능의 번호를 입력하세요)\n");
+                System.out.print("1. 수정\n2. 삭제\n3. 추가 계산\n4. 프로그램 종료\n번호 입력 : ");
+                int menu = calculatorInPut.nextInt();
 
+                switch (menu) {
+                    case 1:
+                        System.out.print("수정 하실 번호를 입력해주세요: ");
+                        int indexNumber = calculatorInPut.nextInt();
+                        calculatorInPut.nextLine();
+                        // 21. 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
+                        System.out.println("양식에 맞춰 수정하세요 (예: 2 + 2 = 4): ");
+                        String changedData = calculatorInPut.nextLine();
+                        calculator.setResultHistoryChangedData(indexNumber, changedData);
+                        break;
 
-//                System.out.println("원하지 않으시면 '기록삭제' 를 입력해 주세요.");
-//                String resultDelete = calculatorInPut.nextLine();
+                    case 2:
+                        //저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능
+                        System.out.print("숫자 0을 눌러 오래된 데이터순서로 삭제 할수 있습니다.");
+                        int deleteNumber = calculatorInPut.nextInt();
+                       //calculatorInPut.nextLine();
+                        calculator.resultHistoryRemoveDate(deleteNumber);
+                        break;
 
-                // 8. 반복의 종료를 알려주는 “exit” 문자열을 입력하기
-                System.out.println("다음 연산을 위해 Enter을 눌러주세요. (exit 입력 시 종료)");
-                calculatorInPut.nextLine();
-                String exit2 = calculatorInPut.nextLine();
-                if (exit2.equals("exit")) {
-                    System.out.println("프로그램을 종료 합니다.");
-                    break;
+                    case 3:
+                        System.out.println("계산을 계속합니다.");
+                        calculatorInPut.nextLine(); // 버퍼 정리
+                        break;
+
+                    case 4:
+                        // 8. 반복의 종료를 알려주는 “exit” 문자열을 입력하기
+                        System.out.println("'exit' 입력 하여 종료합니다");
+                        calculatorInPut.nextLine();
+                        String exit2 = calculatorInPut.nextLine();
+                        if (exit2.equals("exit")) {
+                            System.out.println("프로그램을 종료 합니다.");
+                            break;
+                        }
+
+                    System.out.println("오케이 렛츠기릿!");
                 }
-                System.out.println("오케이 렛츠기릿!");
             }
         }
     }
