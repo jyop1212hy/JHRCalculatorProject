@@ -21,8 +21,8 @@ public class Calculator {
     //char operation -> char calculatorInPut 로 매개변수 변경
     public int calculate(char operation1, int num1, int num2) {
         int result = 0;
-
         switch (operation1) {
+
             case '+':
                 result = num1 + num2;
                 break;
@@ -35,12 +35,12 @@ public class Calculator {
             case '/':
                 //요청사항: “나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.“
                 //나눗셈 0입력 if문 병합 완료후 /(나눗셈 기호) 부분 제거)
-            if (num2 == 0) {
-                System.out.println("나눗셈 연산에서 분모(두번째 정수)애 0이 입력될 수 없습니다.");
+                if (num2 == 0) {
+                    System.out.println("나눗셈 연산에서 분모(두번째 정수)애 0이 입력될 수 없습니다.");
                 } else {
-                result = num1 / num2;
-                break;
-            }
+                    result = num1 / num2;
+                    break;
+                }
         }
 
         // 5) 연산 결과는 Calculator 클래스의 연산 결과를 저장하는 필드에 저장
