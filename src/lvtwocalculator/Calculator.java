@@ -74,7 +74,7 @@ public class Calculator {
             resultHistory.remove(indexNumber);
             System.out.println("가장 오래된 기록이 삭제되었습니다!\n");
         } else {
-            System.out.println("해당 버전에서는 오래된 순서의 데이터만 삭제할수 있습니다.");
+            System.out.println("잘못 입력 하셨습니다..");
             return;
         }
     }
