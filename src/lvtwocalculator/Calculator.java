@@ -10,12 +10,9 @@ public class Calculator {
     //속성
     //연산 결과는 Calculator 클래스의 연산 결과를 저장하는 필드에 저장
     //Main 에서컬렉션 필드에 직접 접근하지 못하도록 수정 (캡슐화)
-    private List<String> resultHistory;
+    private List<String> resultHistory = new ArrayList<>();
 
     //생성자
-    Calculator() {
-        this.resultHistory = new ArrayList<>();
-    }
     //기능
 
     // 4) 연산 수행 역할은 Calculator 클래스가 담당
