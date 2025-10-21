@@ -12,7 +12,7 @@ public class LvOneCalculator {
         //Scanner를 사용하여 양의 정수 2개(0 포함)와 사칙연산을 입력 받기
         Scanner calculatorInPut = new Scanner(System.in);
 
-        // 7반복문 으로 무산 반복
+        // 7. 반복문 으로 무한 반복
         while (true) {
             // 1. 사칙연산 기로 입력 받기
             System.out.print("원하는 사칙연산(+,-,*,/) 기호를 입력하세요: ");

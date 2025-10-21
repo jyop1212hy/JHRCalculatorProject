@@ -171,7 +171,6 @@ public class App {
                         break; // case3 탈출
                     }
 
-
                 // 10)반복의 종료를 알려주는 “exit” 문자열을 입력하기
                 //계산기인점을 고려해 키패드만으로도 종료할수 있게 추가함
                 case 4: {
@@ -184,6 +183,9 @@ public class App {
                         System.out.println("메뉴로 돌아갑니다.");
                         break;
                     }
+                }
+                default: {
+                    System.out.println("잘못된 번호를 입력하였습니다.");
                 }
             }
         }

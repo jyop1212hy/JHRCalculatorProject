@@ -42,6 +42,9 @@ public class Calculator {
                     result = num1 / num2;
                     break;
                 }
+            default:{
+                System.out.println("잘못된 번호를 입력하였습니다.");
+            }
         }
 
         // 5) 연산 결과는 Calculator 클래스의 연산 결과를 저장하는 필드에 저장
