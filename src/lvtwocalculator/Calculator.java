@@ -37,6 +37,7 @@ public class Calculator {
                 //나눗셈 0입력 if문 병합 완료후 /(나눗셈 기호) 부분 제거)
                 if (num2 == 0) {
                     System.out.println("나눗셈 연산에서 분모(두번째 정수)애 0이 입력될 수 없습니다.");
+                    return 0;
                 } else {
                     result = num1 / num2;
                     break;

@@ -76,7 +76,7 @@ public class App {
                         |  3. 기록 삭제 (가장 오래된 기록 삭제)               |
                         |  4. 프로그램 종료                               |
                         ------------------------------------------------
-                        번호 입력: """);
+                        번호 입력:  """);
                 try {
                     menu = calculatorInPut.nextInt();
                     calculatorInPut.nextLine(); // ← menu 번호 읽은 뒤 개행 정리
@@ -135,56 +135,55 @@ public class App {
                 // 9-1) main 메서드에 삭제 메서드가 활용될 수 있도록
                 //저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능
                 case 3: {
-                    System.out.println("\n------저장된 기록을 삭제 할수 있습니다.-----");
+                    System.out.println("\n----------------계산 기록----------------");
                     if (resultHistory.isEmpty()) {
                         System.out.println("|          계산기 쓰려는거 맞죠??          |");
                         System.out.println("\n---------------계산 기록---------------");
                         break;
                     }
                     for (int i = 0; i < resultHistory.size(); i++) {
-                        System.out.println("|   " + i + ". " + resultHistory.get(i) + "  |");// ← 개별 항목 출력
+                        System.out.println("|    " + i + ". " + resultHistory.get(i) + "                     |");// ← 개별 항목 출력
                         System.out.println("---------------------------------------\n");
                     }
 
                     while (true) {
-                        System.out.println("0번을 눌러 가장 오래된 기록만순서로만 할수 있습니다.");
-                        System.out.print("\n숫자 0을 눌러 삭제 하세요.\n취소는 -1 을 입력하세요: ");
-                        break;
-                    }
-                    try {
-                        int deleteNumber = calculatorInPut.nextInt();
-                        calculatorInPut.nextLine(); // 개행정리
+                        System.out.println("0번을 눌러 가장 오래된 기록 순서로만 삭제 할수 있습니다.");
+                        System.out.print("\n숫자 0을 눌러 삭제 하세요.(취소는 -1 을 입력하세요)\n번호 입력: ");
+                        try {
+                            int deleteNumber = calculatorInPut.nextInt();
+                            calculatorInPut.nextLine(); // 개행정리
 
-                        if (deleteNumber == -1) {
-                            System.out.println("삭제를 취소합니다.");
-                            break;
-                        } else if (deleteNumber == 0) {
-                            calculator.resultHistoryRemoveDate(0); // 0번 인덱스 삭제
-                            System.out.println("0번 기록이 삭제되었습니다.");
-                            break;
-                        } else {
-                            System.out.println("[!] 0 또는 -1을 입력하세요.");
+                            if (deleteNumber == -1) {
+                                System.out.println("삭제를 취소합니다.");
+                                break;
+                            } else if (deleteNumber == 0) {
+                                calculator.resultHistoryRemoveDate(0); // 0번 인덱스 삭제
+                                System.out.println("0번 기록이 삭제되었습니다.");
+                                break;
+                            } else {
+                                System.out.println("0 또는 -1을 입력하세요.");
+                            }
+                        } catch (InputMismatchException e) {
+                            System.out.println("숫자로 입력해주세요.");
+                            calculatorInPut.nextLine(); // 버퍼 비우기
                         }
-                    } catch (InputMismatchException e) {
-                        System.out.println("[!] 숫자로 입력해주세요.");
-                        calculatorInPut.nextLine(); // 버퍼 비우기
                     }
-                    break; // case3 탈출
-                }
+                        break; // case3 탈출
+                    }
+
 
                 // 10)반복의 종료를 알려주는 “exit” 문자열을 입력하기
                 //계산기인점을 고려해 키패드만으로도 종료할수 있게 추가함
                 case 4: {
                     System.out.println("\n숫자 0 또는 'exit' 입력 하여 종료합니다");
                     String exit = calculatorInPut.nextLine();
-                    if (exit.equals("exit")) {
+                    if (exit.equals("exit") || exit.equals("0")) {
                         System.out.println("프로그램을 종료 합니다.");
-                        break;
-                    } else if (exit.equals("0")) {
-                        System.out.println("프로그램을 종료 합니다.");
+                        return;
+                    } else {
+                        System.out.println("메뉴로 돌아갑니다.");
                         break;
                     }
-                    return;
                 }
             }
         }
